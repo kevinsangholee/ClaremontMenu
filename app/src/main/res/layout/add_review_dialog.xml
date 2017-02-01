@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RatingBar
+        android:id="@+id/add_review_rating_bar"
+        style="?android:attr/ratingBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:isIndicator="false"
+        android:stepSize="1.0" />
+
+    <EditText
+        android:id="@+id/add_review_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="16dp"
+        android:gravity="top"
+        android:hint="Add your review here..."
+        android:inputType="textMultiLine"
+        android:minHeight="100dp"
+        android:padding="10dp" />
+
+</LinearLayout>

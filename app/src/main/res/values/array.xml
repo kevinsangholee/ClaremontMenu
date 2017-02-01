@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="meals_weekday_array">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+    </string-array>
+    <string-array
+        name="meals_weekend_array">
+        <item>Brunch</item>
+        <item>Dinner</item>
+    </string-array>
+    <string-array
+        name="rating_choices_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+</resources>
