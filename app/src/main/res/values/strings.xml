@@ -10,5 +10,6 @@
     <string name="list_view_rating_">Rating: %.2f/5</string>
     <string name="rating_template">(%.2f)</string>
     <string name="edit_review">Edit Review</string>
+    <string name="add_review_dialog_text">Add your review here (optional)</string>
 
 </resources>

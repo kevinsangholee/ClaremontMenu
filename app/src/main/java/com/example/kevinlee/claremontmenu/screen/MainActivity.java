@@ -31,9 +31,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * THINGS TO DO
      *
-     * integrate API and the internet into the app
-     * create an online database filled with the food, and reviews
-     * upgrade the layout
+     * IMPLEMENT A FEATURE WHERE FOODS CAN BE SAVED SO THAT THE NEXT TIME THEY APPEAR THEY GET NOTIFIED
      *
      */
 

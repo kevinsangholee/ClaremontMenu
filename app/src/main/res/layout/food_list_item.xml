@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/list_item_height"
+    android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <ImageView
@@ -10,24 +10,37 @@
         android:layout_width="88dp"
         android:layout_height="88dp"
         android:scaleType="centerCrop"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_gravity="center_vertical"
         android:src="@drawable/rotisserie_chicken" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="2"
+            android:scrollHorizontally="true"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/black"
             tools:text="Rotiserrie Chicken" />
+
+        <!--android:ellipsize="marquee"-->
+        <!--android:marqueeRepeatLimit="marquee_forever"-->
+        <!--android:maxLines="1"-->
 
         <TextView
             android:id="@+id/rating_text_view"
@@ -41,8 +54,8 @@
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:stepSize="0.1"
-            android:isIndicator="true" />
+            android:isIndicator="true"
+            android:stepSize="0.1" />
 
         <TextView
             android:id="@+id/review_count_text_view"

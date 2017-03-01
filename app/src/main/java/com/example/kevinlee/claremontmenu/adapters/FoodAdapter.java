@@ -55,6 +55,11 @@ public class FoodAdapter extends ArrayAdapter<Food> {
         Resources res = getContext().getResources();
 
         nameTextView.setText(currentName);
+//        if(nameTextView.getLineCount() != 1) {
+//            nameTextView.setMaxLines(1);
+//            nameTextView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+//            nameTextView.setMarqueeRepeatLimit(-1);
+//        }
         ratingTextView.setText(String.format(res.getString(R.string.list_view_rating_), rating));
         ratingBar.setRating((float) rating);
         reviewCountTextView.setText(String.format(res.getString(R.string.review_count), review_count));

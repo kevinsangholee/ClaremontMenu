@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kevinlee.claremontmenu.R;
@@ -36,8 +38,10 @@ public class SchoolFragment extends Fragment implements LoaderManager.LoaderCall
     private int school_id;
     private int meal;
     private ArrayList<Food> foodList = new ArrayList<Food>();
+    private TextView noFoodTextView;
     private ListView listView;
     private FoodAdapter adapter;
+    private ProgressBar progressBar;
 
     private LoaderManager.LoaderCallbacks<String> AddFoodLoaderListener =
             new LoaderManager.LoaderCallbacks<String>() {
@@ -67,12 +71,15 @@ public class SchoolFragment extends Fragment implements LoaderManager.LoaderCall
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_school, container, false);
 
+        noFoodTextView = (TextView) rootView.findViewById(R.id.no_food_text_view);
+        progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+
         Bundle b = getArguments();
         school_id = b.getInt(SchoolAdapter.DINING_HALL_KEY, -1);
         meal = b.getInt(SchoolAdapter.MEAL_KEY, -1);
         Log.i("School id for this frag", String.valueOf(school_id));
 
-//        getLoaderManager().initLoader(ADD_FOODS_LOADER, null, AddFoodLoaderListener);
+        getLoaderManager().initLoader(ADD_FOODS_LOADER, null, AddFoodLoaderListener);
         startLoader(GET_FOODS_LOADER);
 
         listView = (ListView) rootView.findViewById(R.id.food_list);
@@ -102,11 +109,18 @@ public class SchoolFragment extends Fragment implements LoaderManager.LoaderCall
 
     @Override
     public Loader<ArrayList<Food>> onCreateLoader(int id, Bundle args) {
+        progressBar.setVisibility(View.VISIBLE);
         return new GetMealLoader(getActivity(), school_id, meal);
     }
 
     @Override
     public void onLoadFinished(Loader<ArrayList<Food>> loader, ArrayList<Food> data) {
+        if(data.size() == 0) {
+            noFoodTextView.setText(getString(R.string.no_food_found));
+        } else {
+            noFoodTextView.setText("");
+        }
+        progressBar.setVisibility(View.INVISIBLE);
         adapter.clear();
         adapter.addAll(data);
     }

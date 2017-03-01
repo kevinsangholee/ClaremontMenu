@@ -23,6 +23,11 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 /**
  * Created by kevinlee on 12/30/16.
  */
@@ -116,6 +121,55 @@ public class RequestHandler {
             Log.e(LOG_TAG, "IOException: ", e);
         }
         return sb.toString();
+    }
+
+    public String sendGetRequestImageSearch(String requestURL, String image) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            StringBuilder newURL = new StringBuilder(requestURL);
+            newURL.append(URLEncoder.encode(image, "UTF-8"));
+            URL url = new URL(newURL.toString());
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String s;
+            while ((s = bufferedReader.readLine()) != null) {
+                sb.append(s + "\n");
+            }
+        } catch (MalformedURLException e) {
+            Log.e(LOG_TAG, "Bad URL", e);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "IOException", e);
+        }
+        return sb.toString();
+    }
+
+    public String sendGetRequestBingImageAPI(String image) {
+        try {
+            OkHttpClient client = new OkHttpClient();
+            HttpUrl url = new HttpUrl.Builder()
+                    .scheme("https")
+                    .host("api.cognitive.microsoft.com")
+                    .addPathSegment("bing")
+                    .addPathSegment("v5.0")
+                    .addPathSegment("images")
+                    .addPathSegment("search")
+                    .addQueryParameter("q", image)
+                    .addQueryParameter("size", "Medium")
+                    .build();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .addHeader("Content-Type", "multipart/form-data")
+                    .addHeader("Ocp-Apim-Subscription-Key", "b3085bfab26b404bac134a76acf64cfb")
+                    .build();
+
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        } catch (MalformedURLException e) {
+            Log.e(LOG_TAG, "Bad URL", e);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "IOException", e);
+        }
+        return null;
     }
 
     public String sendGetRequestSchoolFood(String requestURL, int school_id) {

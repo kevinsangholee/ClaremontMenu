@@ -1,5 +1,6 @@
 package com.example.kevinlee.claremontmenu.data.network;
 
+import android.text.Html;
 import android.util.Log;
 
 import com.example.kevinlee.claremontmenu.data.Food;
@@ -10,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by kevinlee on 1/1/17.
@@ -30,12 +32,24 @@ public class QueryUtils {
             for (int i = 0; i < data.length(); i++) {
                 JSONObject currentFood = data.optJSONObject(i);
                 int id = currentFood.getInt(DBConfig.TAG_FOOD_ID);
-                String name = currentFood.getString(DBConfig.TAG_FOOD_NAME);
+                String name = Html.fromHtml(currentFood.getString(DBConfig.TAG_FOOD_NAME)).toString();
                 int school = currentFood.getInt(DBConfig.TAG_FOOD_SCHOOL);
                 int review_count = currentFood.getInt(DBConfig.TAG_FOOD_REVIEW_COUNT);
                 double rating = currentFood.getDouble(DBConfig.KEY_RATING);
                 String imageURL = currentFood.getString(DBConfig.TAG_FOOD_IMAGE);
                 foods.add(new Food(id, name, school, imageURL, review_count, rating));
+
+//                 ADDING IMAGES TO THE DATABASE
+                if(imageURL.equals("null")) {
+                    HashMap<String, String> params = new HashMap<>();
+                    RequestHandler rh = new RequestHandler();
+                    String bingImageJSON = rh.sendGetRequestBingImageAPI(name);
+                    String bingImageURL = extractFirstImageUrl(bingImageJSON);
+                    params.put(DBConfig.KEY_FOOD_ID, String.valueOf(id));
+                    params.put(DBConfig.KEY_FOOD_IMAGE, bingImageURL);
+                    String result = rh.sendPostRequest(DBConfig.URL_UPDATE_IMAGE, params);
+                    Log.i(LOG_TAG, result);
+                }
             }
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Error processing JSON data", e);
@@ -92,6 +106,19 @@ public class QueryUtils {
             double rating = currentFood.getDouble(DBConfig.KEY_RATING);
             String imageURL = currentFood.getString(DBConfig.TAG_FOOD_IMAGE);
             return new Food(id, name, school, imageURL, review_count, rating);
+        } catch (JSONException e) {
+            Log.e(LOG_TAG, "Error processing JSON data", e);
+        }
+        return null;
+    }
+
+    public static String extractFirstImageUrl(String JSON_DATA) {
+        try {
+            JSONObject root = new JSONObject(JSON_DATA);
+            JSONArray value = root.optJSONArray(DBConfig.TAG_BING_VALUE);
+            JSONObject current = value.optJSONObject(0);
+            String url = current.getString(DBConfig.TAG_BING_CONTENT_URL);
+            return url;
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Error processing JSON data", e);
         }

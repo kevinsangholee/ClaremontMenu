@@ -32,6 +32,7 @@ public class DBConfig {
     public static final String URL_UPDATE_REVIEW = "https://claremontmenu.com/pdo/updateReview.php";
     public static final String URL_ADD_ASPC_FOOD = "https://claremontmenu.com/pdo/addASPCFood.php";
     public static final String URL_GET_SINGLE_FOOD = "https://claremontmenu.com/pdo/getSingleFood.php?id=";
+    public static final String URL_UPDATE_IMAGE = "https://claremontmenu.com/pdo/updateImage.php";
 
     public static final String KEY_JSON = "json";
 
@@ -39,18 +40,13 @@ public class DBConfig {
     public static final String KEY_FOOD_NAME = "name";
     public static final String KEY_FOOD_SCHOOL = "school";
     public static final String KEY_FOOD_IMAGE = "image";
-    public static final String KEY_FOOD_THUMBS_UP = "thumbs_up";
-    public static final String KEY_FOOD_THUMBS_DOWN = "thumbs_down";
     public static final String KEY_FOOD_REVIEW_COUNT = "review_count";
-    public static final String KEY_OPERATION = "operation";
     public static final String KEY_RATING = "rating";
 
     public static final String TAG_FOOD_ID = "id";
     public static final String TAG_FOOD_NAME = "name";
     public static final String TAG_FOOD_SCHOOL = "school";
     public static final String TAG_FOOD_IMAGE = "image";
-    public static final String TAG_FOOD_THUMBS_UP = "thumbs_up";
-    public static final String TAG_FOOD_THUMBS_DOWN = "thumbs_down";
     public static final String TAG_FOOD_REVIEW_COUNT = "review_count";
 
     public static final String KEY_REVIEW_ID = "id";
@@ -75,6 +71,9 @@ public class DBConfig {
     public static final String ASPC_DAY = "day";
     public static final String ASPC_MEAL = "meal";
     public static final String ASPC_FOOD_ITEMS = "food_items";
+
+    public static final String TAG_BING_VALUE = "value";
+    public static final String TAG_BING_CONTENT_URL = "contentUrl";
 
     public static boolean isWeekend() {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");

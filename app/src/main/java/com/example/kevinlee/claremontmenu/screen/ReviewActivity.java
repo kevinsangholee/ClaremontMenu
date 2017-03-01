@@ -43,9 +43,6 @@ ReviewActivity extends AppCompatActivity implements LoaderManager.LoaderCallback
     private static final String LOG_TAG = ReviewActivity.class.getSimpleName();
 
     /**
-     * TODO: Implement adding a review to a specific food id
-     * clean up ui
-     * add a delete review option
      */
     final Context context = this;
 
@@ -161,9 +158,7 @@ ReviewActivity extends AppCompatActivity implements LoaderManager.LoaderCallback
                         public void onClick(DialogInterface dialog, int which) {
                             String review = reviewEditText.getText().toString();
                             float rating = ratingBar.getRating();
-                            if (review.equals("")) {
-                                Toast.makeText(ReviewActivity.this, "Error: Cannot add an empty review.", Toast.LENGTH_SHORT).show();
-                            } else if (rating == 0) {
+                            if (rating == 0) {
                                 Toast.makeText(ReviewActivity.this, "Error: Please indicate a star rating.", Toast.LENGTH_SHORT).show();
                             } else {
                                 addReview(review, Integer.toString((int) rating));
@@ -187,9 +182,7 @@ ReviewActivity extends AppCompatActivity implements LoaderManager.LoaderCallback
                         public void onClick(DialogInterface dialog, int which) {
                             String review = reviewEditText.getText().toString();
                             float rating = ratingBar.getRating();
-                            if (review.equals("")) {
-                                Toast.makeText(ReviewActivity.this, "Error: Cannot add an empty review.", Toast.LENGTH_SHORT).show();
-                            } else if (rating == 0) {
+                            if (rating == 0) {
                                 Toast.makeText(ReviewActivity.this, "Error: Please indicate a star rating.", Toast.LENGTH_SHORT).show();
                             } else {
                                 updateReview(review, Integer.toString((int) rating));
