@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -36,6 +36,7 @@ import com.example.kevinlee.claremontmenu.data.network.QueryUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class
 ReviewActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String>{
@@ -64,10 +65,10 @@ ReviewActivity extends AppCompatActivity implements LoaderManager.LoaderCallback
     private int review_id;
 
     private TextView nameTextView;
-    private ImageView foodImageView;
     private RatingBar reviewRatingBar;
     private TextView ratingTextView;
-    private Button addReviewButton;
+
+    private TextView noReviewsTextView;
 
     private int count = 0;
 
@@ -105,11 +106,12 @@ ReviewActivity extends AppCompatActivity implements LoaderManager.LoaderCallback
         editor = sharedPrefs.edit();
 
         nameTextView = (TextView) findViewById(R.id.review_name_text_view);
-        foodImageView = (ImageView) findViewById(R.id.review_food_image_view);
+        ImageView foodImageView = (ImageView) findViewById(R.id.review_food_image_view);
         reviewRatingBar = (RatingBar) findViewById(R.id.review_activity_rating_bar);
         ratingTextView = (TextView) findViewById(R.id.review_activity_rating);
+        noReviewsTextView = (TextView) findViewById(R.id.no_reviews_text_view);
 
-        addReviewButton = (Button) findViewById(R.id.review_add_review_button);
+        FloatingActionButton addReviewButton = (FloatingActionButton) findViewById(R.id.review_fab);
 
         Bundle b = getIntent().getExtras();
         double rating = b.getDouble(DBConfig.KEY_RATING);
@@ -125,9 +127,6 @@ ReviewActivity extends AppCompatActivity implements LoaderManager.LoaderCallback
         nameTextView.setText(b.getString(DBConfig.KEY_FOOD_NAME));
         reviewRatingBar.setRating((float) rating);
         ratingTextView.setText(String.format(getString(R.string.rating_template), rating));
-        if(review_id != -1) {
-            addReviewButton.setText(getString(R.string.edit_review));
-        }
 
         String imageURL = b.getString(DBConfig.KEY_FOOD_IMAGE);
         if(!imageURL.equals("null")) {
@@ -246,18 +245,23 @@ ReviewActivity extends AppCompatActivity implements LoaderManager.LoaderCallback
         int loaderId;
         switch(loaderId = loader.getId()) {
             case ADD_REVIEW_LOADER:
-                Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Review added!", Toast.LENGTH_SHORT).show();
                 editor.putInt(ID_KEY, Integer.parseInt(data));
                 editor.apply();
                 review_id = Integer.parseInt(data);
-                addReviewButton.setText(getString(R.string.edit_review));
                 showReviews();
                 refreshFoodData();
                 break;
             case GET_REVIEWS_LOADER:
                 reviews = QueryUtils.extractReviews(data);
+                Collections.reverse(reviews);
                 adapter.clear();
                 adapter.addAll(reviews);
+                if(reviews.size() == 0) {
+                    noReviewsTextView.setText(getString(R.string.no_reviews));
+                } else {
+                    noReviewsTextView.setText("");
+                }
                 break;
             case UPDATE_REVIEW_LOADER:
                 Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
@@ -273,7 +277,6 @@ ReviewActivity extends AppCompatActivity implements LoaderManager.LoaderCallback
                 editor.putInt(ID_KEY + KEY_RATING, 0);
                 editor.apply();
                 review_id = -1;
-                addReviewButton.setText(getString(R.string.add_review));
                 showReviews();
                 refreshFoodData();
                 break;

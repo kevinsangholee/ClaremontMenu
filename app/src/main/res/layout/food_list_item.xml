@@ -9,23 +9,24 @@
         android:id="@+id/food_image_view"
         android:layout_width="88dp"
         android:layout_height="88dp"
-        android:scaleType="centerCrop"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/rotisserie_chicken" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/rotisserie_chicken"
+        android:transitionName="@string/imageTransition" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical">
 
@@ -49,7 +50,7 @@
             android:text="Rating: 3.55"
             android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
-        <RatingBar
+        <me.zhanghai.android.materialratingbar.MaterialRatingBar
             android:id="@+id/list_view_rating_bar"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"

@@ -1,6 +1,7 @@
 package com.example.kevinlee.claremontmenu.screen;
 
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -73,13 +74,19 @@ public class SchoolFragment extends Fragment implements LoaderManager.LoaderCall
 
         noFoodTextView = (TextView) rootView.findViewById(R.id.no_food_text_view);
         progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+        TextView hoursTextView = (TextView) rootView.findViewById(R.id.hours_text_view);
 
         Bundle b = getArguments();
         school_id = b.getInt(SchoolAdapter.DINING_HALL_KEY, -1);
         meal = b.getInt(SchoolAdapter.MEAL_KEY, -1);
+        String hours = b.getString(DBConfig.HOURS_KEY);
         Log.i("School id for this frag", String.valueOf(school_id));
 
-        getLoaderManager().initLoader(ADD_FOODS_LOADER, null, AddFoodLoaderListener);
+
+        String hoursComplete = getHoursString(meal, hours);
+        hoursTextView.setText(hoursComplete);
+
+//        getLoaderManager().initLoader(ADD_FOODS_LOADER, null, AddFoodLoaderListener);
         startLoader(GET_FOODS_LOADER);
 
         listView = (ListView) rootView.findViewById(R.id.food_list);
@@ -90,17 +97,22 @@ public class SchoolFragment extends Fragment implements LoaderManager.LoaderCall
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Food current = adapter.getItem(position);
-            Bundle b = new Bundle();
-            b.putInt(DBConfig.KEY_FOOD_ID, current.getId());
-            b.putString(DBConfig.KEY_FOOD_NAME, current.getName());
-            b.putInt(DBConfig.KEY_FOOD_SCHOOL, current.getSchool());
-            b.putInt(DBConfig.KEY_FOOD_REVIEW_COUNT, current.getReview_count());
-            b.putDouble(DBConfig.KEY_RATING, current.getRating());
-            b.putString(DBConfig.KEY_FOOD_IMAGE, current.getImage());
-            Intent intent = new Intent(getActivity(), ReviewActivity.class);
-            intent.putExtras(b);
-            startActivity(intent);
+                Food current = adapter.getItem(position);
+                View sharedView = view.findViewById(R.id.food_image_view);
+                String transitionName = getString(R.string.imageTransition);
+                Bundle b = new Bundle();
+                b.putInt(DBConfig.KEY_FOOD_ID, current.getId());
+                b.putString(DBConfig.KEY_FOOD_NAME, current.getName());
+                b.putInt(DBConfig.KEY_FOOD_SCHOOL, current.getSchool());
+                b.putInt(DBConfig.KEY_FOOD_REVIEW_COUNT, current.getReview_count());
+                b.putDouble(DBConfig.KEY_RATING, current.getRating());
+                b.putString(DBConfig.KEY_FOOD_IMAGE, current.getImage());
+                Intent intent = new Intent(getActivity(), ReviewActivity.class);
+                ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(
+                        getActivity(), sharedView, transitionName
+                );
+                intent.putExtras(b);
+                startActivity(intent, transitionActivityOptions.toBundle());
             }
         });
 
@@ -132,5 +144,26 @@ public class SchoolFragment extends Fragment implements LoaderManager.LoaderCall
 
     public void startLoader(int type) {
         getLoaderManager().initLoader(type, null, this);
+    }
+
+    public String getHoursString(int meal, String hours) {
+        String mealWord;
+        switch (meal) {
+            case DBConfig.BREAKFAST:
+                mealWord = "Breakfast ";
+                break;
+            case DBConfig.LUNCH:
+                mealWord = "Lunch ";
+                break;
+            case DBConfig.DINNER:
+                mealWord = "Dinner ";
+                break;
+            case DBConfig.BRUNCH:
+                mealWord = "Brunch ";
+                break;
+            default:
+                mealWord = "Meal ";
+        }
+        return mealWord + "hours: " + hours;
     }
 }

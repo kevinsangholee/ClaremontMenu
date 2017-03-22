@@ -1,102 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_review"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.example.kevinlee.claremontmenu.screen.ReviewActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_review_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:titleTextColor="@android:color/white"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp"
-        android:layout_gravity="end"
-        android:gravity="end"
-        android:theme="@style/ToolbarTheme"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@drawable/custom_border"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/review_food_image_view"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/rotisserie_chicken" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_review_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="end"
+            android:background="@color/colorPrimary"
+            android:gravity="end"
+            android:theme="@style/ToolbarTheme"
+            android:titleTextColor="@android:color/white"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:orientation="vertical">
+            android:background="@drawable/review_header_bg"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/review_food_image_view"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/rotisserie_chicken"
+                android:transitionName="@string/imageTransition"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp" />
 
             <TextView
                 android:id="@+id/review_name_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:maxLines="1"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:maxLines="2"
                 android:text="Rotisserie Chicken"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <RatingBar
-                    android:id="@+id/review_activity_rating_bar"
-                    style="?android:attr/ratingBarStyleIndicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:isIndicator="true"
-                    android:stepSize="0.1" />
-
-                <TextView
-                    android:id="@+id/review_activity_rating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:text="(3.55)"
-                    android:textColor="@android:color/black" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/review_activity_rating_bar"
+                style="@style/Widget.MaterialRatingBar.RatingBar.Indicator.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_gravity="center_horizontal"
+                android:isIndicator="true"
+                android:maxHeight="24dp"
+                android:minHeight="24dp"
+                android:stepSize="0.1" />
 
-                <Button
-                    android:id="@+id/review_add_review_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add_review" />
-
-            </LinearLayout>
-
+            <TextView
+                android:id="@+id/review_activity_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="(3.55)"
+                android:textColor="@android:color/black" />
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ListView
+                android:id="@+id/review_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawSelectorOnTop="true"
+                android:orientation="vertical" />
+
+            <TextView
+                android:id="@+id/no_reviews_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text=""
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/review_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:drawSelectorOnTop="true"
-        android:orientation="vertical" />
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/review_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_pencil"
+        app:fabSize="normal" />
+
+</android.support.design.widget.CoordinatorLayout>

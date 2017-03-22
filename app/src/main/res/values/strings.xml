@@ -1,15 +1,64 @@
 <resources>
     <string name="app_name">Claremont Menu</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_review">Add Review</string>
-    <string name="review_count">Read the reviews (%1$d)</string>
+    <string name="review_count">Total Ratings (%1$d)</string>
     <string name="check_mark">✓</string>
     <string name="no_food_found">Nothing on the menu today!</string>
     <string name="list_view_rating_">Rating: %.2f/5</string>
     <string name="rating_template">(%.2f)</string>
     <string name="edit_review">Edit Review</string>
     <string name="add_review_dialog_text">Add your review here (optional)</string>
+    <string name="imageTransition">imageTransition</string>
+    <string name="no_reviews">No reviews yet. Add your own!</string>
+
+    <!-- Meals and hours strings-->
+    <string name="breakfast_hours">Breakfast Hours:</string>
+    <string name="lunch_hours">Lunch Hours:</string>
+    <string name="dinner_hours">Dinner Hours:</string>
+    <string name="brunch_hours">Brunch Hours:</string>
+    <string name="closed">Closed</string>
+    <!-- Frank -->
+    <string name="frank_breakfast">7:30 a.m. - 10:00 a.m.</string>
+    <string name="frank_lunch">11:30 a.m. - 1:00 p.m.</string>
+    <string name="frank_dinner">5:00 p.m. - 7:00 p.m.</string>
+    <string name="frank_brunch">11:00 a.m. - 1:00 p.m.</string>
+    <string name="frank_dinner_sun">5:30 p.m. - 7:00 p.m.</string>
+    <!-- Frary -->
+    <string name="frary_breakfast">7:30 a.m. - 10:00 a.m.</string>
+    <string name="frary_lunch">11:00 a.m. - 2:00 p.m.</string>
+    <string name="frary_dinner">5:00 p.m. - 8:00 p.m.</string>
+    <string name="frary_brunch">10:30 a.m. - 1:30 p.m.</string>
+    <string name="frary_dinner_weekend">5:00 p.m. - 8:00 p.m.</string>
+    <!-- Oldenborg -->
+    <string name="oldenborg_lunch">12:00 p.m. - 1:00 p.m.</string>
+    <!-- CMC -->
+    <string name="cmc_breakfast">7:30 a.m. - 9:30 a.m.</string>
+    <string name="cmc_lunch">11:00 a.m. - 1:00 p.m.</string>
+    <string name="cmc_dinner">5:00 p.m. - 7:00 p.m.</string>
+    <string name="cmc_brunch">10:30 a.m. - 12:30 p.m.</string>
+    <string name="cmc_dinner_weekend">4:30 p.m. - 6:30 p.m.</string>
+    <!-- Scripps -->
+    <string name="scripps_breakfast">7:30 a.m. - 10:00 a.m.</string>
+    <string name="scripps_lunch">11:15 a.m. - 1:30 p.m.</string>
+    <string name="scripps_dinner">4:45 p.m. - 7:00 p.m.</string>
+    <string name="scripps_brunch">10:45 a.m. - 1:00 p.m.</string>
+    <string name="scripps_dinner_weekend">5:00 p.m. - 6:30 p.m.</string>
+    <!-- Pitzer -->
+    <string name="pitzer_breakfast">7:30 a.m. - 10:00 a.m.</string>
+    <string name="pitzer_lunch">11:15 a.m. - 1:30 p.m.</string>
+    <string name="pitzer_lunch_thurs">11:00 a.m. - 1:30 p.m.</string>
+    <string name="pitzer_dinner">5:00 p.m. - 7:30 p.m.</string>
+    <string name="pitzer_brunch">10:30 p.m. - 12:30 p.m.</string>
+    <string name="pitzer_dinner_weekend">5:00 p.m. - 6:30 p.m.</string>
+    <!-- Mudd -->
+    <string name="mudd_breakfast">7:30 a.m. - 9:30 a.m.</string>
+    <string name="mudd_lunch">11:15 a.m. - 1:00 p.m.</string>
+    <string name="mudd_dinner">5:00 p.m. - 7:00 p.m.</string>
+    <string name="mudd_brunch">10:30 a.m. - 12:45 p.m.</string>
+
+
+
+
 
 </resources>

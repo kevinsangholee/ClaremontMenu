@@ -75,6 +75,8 @@ public class DBConfig {
     public static final String TAG_BING_VALUE = "value";
     public static final String TAG_BING_CONTENT_URL = "contentUrl";
 
+    public static final String HOURS_KEY = "hours";
+
     public static boolean isWeekend() {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();

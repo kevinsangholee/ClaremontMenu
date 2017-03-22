@@ -22,6 +22,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import static com.example.kevinlee.claremontmenu.data.network.DBConfig.BREAKFAST;
+import static com.example.kevinlee.claremontmenu.data.network.DBConfig.isWeekend;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -29,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
 
     /**
-     * THINGS TO DO
-     *
-     * IMPLEMENT A FEATURE WHERE FOODS CAN BE SAVED SO THAT THE NEXT TIME THEY APPEAR THEY GET NOTIFIED
-     *
+     * TODO - IMPLEMENT A FEATURE WHERE FOODS CAN BE SAVED SO THAT THE NEXT TIME THEY APPEAR THEY GET NOTIFIED
+     * TODO - CATALOG OF FOODS WITH SEARCH
+     * TODO - ADD SPLASH SCREEN
+     * TODO - OVERALL DINING HALL RATINGS
      */
 
     @Override
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        schoolAdapter = new SchoolAdapter(getSupportFragmentManager(), DBConfig.BREAKFAST);
+        schoolAdapter = new SchoolAdapter(getSupportFragmentManager(), BREAKFAST, getApplicationContext());
 
         viewPager.setAdapter(schoolAdapter);
 
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         ArrayAdapter<CharSequence> adapter;
-        if(DBConfig.isWeekend()) {
+        if(isWeekend()) {
             adapter = ArrayAdapter.createFromResource(this,
                     R.array.meals_weekend_array, R.layout.spinner_drop_title);
         } else {
@@ -70,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         date.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
         String time = date.format(currentTime);
         int hour = Integer.parseInt(time);
-        if(DBConfig.isWeekend()) {
+        if(isWeekend()) {
             if (hour >= 14 && hour < 24) {
                 mealSpinner.setSelection(1);
             } else {
@@ -93,25 +96,29 @@ public class MainActivity extends AppCompatActivity {
                     viewPager.removeAllViews();
                     viewPager.setAdapter(null);
                     Log.i(LOG_TAG, "Views removed and set to null");
-                    viewPager.setAdapter(new SchoolAdapter(getSupportFragmentManager(), DBConfig.BREAKFAST));
+                    viewPager.setAdapter(new SchoolAdapter(getSupportFragmentManager(), BREAKFAST,
+                            getApplicationContext()));
                 }
                 if(selected.equals("Lunch")) {
                     viewPager.removeAllViews();
                     viewPager.setAdapter(null);
                     Log.i(LOG_TAG, "Views removed and set to null");
-                    viewPager.setAdapter(new SchoolAdapter(getSupportFragmentManager(), DBConfig.LUNCH));
+                    viewPager.setAdapter(new SchoolAdapter(getSupportFragmentManager(), DBConfig.LUNCH,
+                            getApplicationContext()));
                 }
                 if(selected.equals("Dinner")) {
                     viewPager.removeAllViews();
                     viewPager.setAdapter(null);
                     Log.i(LOG_TAG, "Views removed and set to null");
-                    viewPager.setAdapter(new SchoolAdapter(getSupportFragmentManager(), DBConfig.DINNER));
+                    viewPager.setAdapter(new SchoolAdapter(getSupportFragmentManager(), DBConfig.DINNER,
+                            getApplicationContext()));
                 }
                 if(selected.equals("Brunch")) {
                     viewPager.removeAllViews();
                     viewPager.setAdapter(null);
                     Log.i(LOG_TAG, "Views removed and set to null");
-                    viewPager.setAdapter(new SchoolAdapter(getSupportFragmentManager(), DBConfig.BRUNCH));
+                    viewPager.setAdapter(new SchoolAdapter(getSupportFragmentManager(), DBConfig.BRUNCH,
+                            getApplicationContext()));
                 }
             }
 

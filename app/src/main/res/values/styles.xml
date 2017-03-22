@@ -8,6 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MaterialAnimations" parent="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:windowContentTransitions">true</item>
+
+    </style>
+
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <!-- android:textColorPrimary is the color of the title text in the Toolbar  -->
         <item name="android:textColorPrimary">@color/white</item>

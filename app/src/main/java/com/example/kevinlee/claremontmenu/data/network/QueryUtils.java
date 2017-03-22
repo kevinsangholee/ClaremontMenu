@@ -70,7 +70,9 @@ public class QueryUtils {
                 int rating = currentReview.getInt(DBConfig.KEY_REVIEW_RATING);
                 String review_text = currentReview.getString(DBConfig.TAG_REVIEW_TEXT);
                 String created_at = currentReview.getString(DBConfig.TAG_REVIEW_CREATED_AT);
-                reviews.add(new Review(food_id, user_id, rating, review_text, created_at));
+                if(!review_text.equals("")) {
+                    reviews.add(new Review(food_id, user_id, rating, review_text, created_at));
+                }
             }
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Error processing JSON data", e);
