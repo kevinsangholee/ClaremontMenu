@@ -5,5 +5,5 @@ This Android app allows students of the Claremont Colleges to view the dining ha
 sorted by meal. It also has functionality for adding reviews for each individual food item to
 better help students find out where they want to eat.
 
-<img src ="https://cloud.githubusercontent.com/assets/18518686/23481201/74c22d3a-fe7f-11e6-8bdb-5527bd21cfe5.png" width="200">            <img src="https://cloud.githubusercontent.com/assets/18518686/23481202/74c2b930-fe7f-11e6-8087-5927d636ec00.png" width="200">
-<img src="https://cloud.githubusercontent.com/assets/18518686/23481203/74c4060a-fe7f-11e6-82ee-4382dbde0631.png" width="200">
+<img src ="https://cloud.githubusercontent.com/assets/18518686/24315796/9bb0daa2-10a6-11e7-99c2-06edb5274882.png" width="200">            <img src="https://cloud.githubusercontent.com/assets/18518686/24315797/a12c2586-10a6-11e7-9c87-bef97265ed66.png" width="200">
+<img src="https://cloud.githubusercontent.com/assets/18518686/24315799/a2eeb190-10a6-11e7-8cc0-710ff156ab72.png" width="200">
