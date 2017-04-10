@@ -56,9 +56,7 @@
     <string name="mudd_lunch">11:15 a.m. - 1:00 p.m.</string>
     <string name="mudd_dinner">5:00 p.m. - 7:00 p.m.</string>
     <string name="mudd_brunch">10:30 a.m. - 12:45 p.m.</string>
-
-
-
+    <string name="title_activity_splash">SplashActivity</string>
 
 
 </resources>
