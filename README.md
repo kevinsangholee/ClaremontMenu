@@ -1,6 +1,8 @@
 # ClaremontMenu
 Created by: Kevin Lee
 
+<a href='https://play.google.com/store/apps/details?id=com.ksl.kevinlee.claremontmenu&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="200"/></a>
+
 This Android app allows students of the Claremont Colleges to view the dining hall menu of the day,
 sorted by meal. It also has functionality for adding reviews for each individual food item to
 better help students find out where they want to eat.
