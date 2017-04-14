@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -272,8 +273,31 @@ public class RequestHandler {
         return JSONResponse;
     }
 
+    public String sendGetRequestDaily(int school_id, int meal) {
+        try {
+            OkHttpClient client = new OkHttpClient();
+
+            HttpUrl url = new HttpUrl.Builder()
+                    .scheme("https")
+                    .host("claremontmenu.com")
+                    .addPathSegment("pdo")
+                    .addPathSegment("getFromDaily.php")
+                    .addQueryParameter("school", String.valueOf(school_id))
+                    .addQueryParameter("meal", String.valueOf(meal))
+                    .build();
+
+            Request request = new Request.Builder().url(url).build();
+
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public String sendGetRequestAspcToday(String requestURL, int school_id, int meal) {
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE", Locale.US);
         Date d = new Date();
         String dayOfWeek = sdf.format(d);
         String shortDay = "";

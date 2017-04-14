@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ksl.kevinlee.claremontmenu">
 
-    <android:versionCode>2</android:versionCode>
-    <android:versionName>1.1</android:versionName>
+    <android:versionCode>3</android:versionCode>
+    <android:versionName>1.2</android:versionName>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

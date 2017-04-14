@@ -83,4 +83,6 @@ public class DBConfig {
         String dayOfWeek = sdf.format(d);
         return dayOfWeek.equals("Sunday") || dayOfWeek.equals("Saturday");
     }
+
+
 }

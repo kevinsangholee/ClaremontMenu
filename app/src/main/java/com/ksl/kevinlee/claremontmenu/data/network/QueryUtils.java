@@ -36,18 +36,6 @@ public class QueryUtils {
                 double rating = currentFood.getDouble(DBConfig.KEY_RATING);
                 String imageURL = currentFood.getString(DBConfig.TAG_FOOD_IMAGE);
                 foods.add(new Food(id, name, school, imageURL, review_count, rating));
-
-//                 ADDING IMAGES TO THE DATABASE
-//                if(imageURL.equals("null")) {
-//                    HashMap<String, String> params = new HashMap<>();
-//                    RequestHandler rh = new RequestHandler();
-//                    String bingImageJSON = rh.sendGetRequestBingImageAPI(name);
-//                    String bingImageURL = extractFirstImageUrl(bingImageJSON);
-//                    params.put(DBConfig.KEY_FOOD_ID, String.valueOf(id));
-//                    params.put(DBConfig.KEY_FOOD_IMAGE, bingImageURL);
-//                    String result = rh.sendPostRequest(DBConfig.URL_UPDATE_IMAGE, params);
-//                    Log.i(LOG_TAG, result);
-//                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -76,6 +64,20 @@ public class QueryUtils {
             e.printStackTrace();
         }
         return reviews;
+    }
+
+    public static ArrayList<String> extractFromDaily(String JSON_DATA) {
+        ArrayList<String> foodList = new ArrayList<>();
+        try {
+            JSONArray root = new JSONArray(JSON_DATA);
+            for (int i = 0; i < root.length(); i++) {
+                JSONObject currentFood = root.optJSONObject(i);
+                foodList.add(currentFood.getString("name"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return foodList;
     }
 
     public static ArrayList<String> extractASPCFoodList(String JSON_DATA) {
@@ -112,17 +114,5 @@ public class QueryUtils {
         return null;
     }
 
-    public static String extractFirstImageUrl(String JSON_DATA) {
-        try {
-            JSONObject root = new JSONObject(JSON_DATA);
-            JSONArray value = root.optJSONArray(DBConfig.TAG_BING_VALUE);
-            JSONObject current = value.optJSONObject(0);
-            String url = current.getString(DBConfig.TAG_BING_CONTENT_URL);
-            return url;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
 }

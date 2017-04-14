@@ -34,8 +34,10 @@ public class GetMealLoader extends AsyncTaskLoader<ArrayList<Food>> {
     @Override
     public ArrayList<Food> loadInBackground() {
         RequestHandler rh = new RequestHandler();
-        String ASPC_JSON = rh.sendGetRequestAspcToday(DBConfig.ASPC_BASE_URL, school_id, meal);
-        ArrayList<String> foodList = QueryUtils.extractASPCFoodList(ASPC_JSON);
+//        String ASPC_JSON = rh.sendGetRequestAspcToday(DBConfig.ASPC_BASE_URL, school_id, meal);
+        String DAILY_JSON = rh.sendGetRequestDaily(school_id, meal);
+//        ArrayList<String> foodList = QueryUtils.extractASPCFoodList(ASPC_JSON);
+        ArrayList<String> foodList = QueryUtils.extractFromDaily(DAILY_JSON);
         if(foodList.size() != 0) {
             String JSON_DATA = rh.sendGetRequestWithStringArray(DBConfig.URL_GET_FOOD, school_id, foodList);
             return QueryUtils.extractFoods(JSON_DATA);
